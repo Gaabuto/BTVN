@@ -1,0 +1,12 @@
+# Filename matches spring.application.name = "order-service" so Spring Cloud Config Server
+# serves this config to the order-service client (match pattern: {application}.yml).
+spring:
+  datasource:
+    url: jdbc:mysql://foodx-cluster.local:3306/orders_db
+    username: order_service_user
+    # PLACEHOLDER {cipher} value - generate the real ciphertext by POSTing the plaintext
+    # password to the Config Server's /encrypt endpoint. Never store plaintext here.
+    password: '{cipher}AQBwK3Ym8d1Gk6rP4nOzS7tU2vX5yZ7cA1eMfI3hL6oQ8rT0uW2xY4zB6dF8gJ0lN2pR4tV6x=='
+
+server:
+  port: 8086

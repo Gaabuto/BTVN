@@ -1,0 +1,15 @@
+# Fix 1: renamed config.yml -> restaurant-service.yml so Spring Cloud Config Server
+#        matches it to the client whose spring.application.name = "restaurant-service"
+#        (match pattern: {application}.yml / {application}-{profile}.yml). A mismatched
+#        name makes the Config Server silently serve no config to this service.
+spring:
+  datasource:
+    url: jdbc:mysql://foodx-cluster.local:3306/restaurants_db
+    username: restaurant_service_user
+    # Fix 2: plaintext password replaced with Spring Cloud Config's {cipher} prefix; the
+    #        Config Server decrypts it at fetch time. Value below is a PLACEHOLDER - generate
+    #        the real ciphertext by POSTing the plaintext to the Config Server's /encrypt endpoint.
+    password: '{cipher}AQBvV0Xk9c2Fj7pQ3mNzR8sT1uW4xY6bZ0dLeH2gK5nP7qS9tU1wX3yA5cE7gI9kM1oQ3sU5w=='
+
+server:
+  port: 8085
